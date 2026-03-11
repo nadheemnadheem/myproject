@@ -1,6 +1,15 @@
 #!/bin/bash
-i=1
-while [[ $i -le 10 ]]; do
- echo "$i"
- ((i+=1))
-done
+
+directory="$1"
+
+if [ -z "$directory" ]; then
+  echo "Usage: $0 <directory>"
+  exit 1
+fi
+if [ ! -d "$directory ]; then
+  echo "Error: '$directory' is not a valid directory."
+  exit 1
+fi
+echo "Empty files in $directory:"
+find $directory" -typev f -empty
+

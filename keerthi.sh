@@ -1,32 +1,16 @@
-read -p "Choose name: " Name
+#!/bin/bash
 
-case "$Name" in
-  
-  #case 1
-  "Raju")
-     echo "B-Tech : CSBS"
-     echo "8.21 CGPA" ;;
-  
-  #case 2
-  "Nadheem") 
-     echo "BE : CSE" 
-     echo "7.1 CGPA" ;;
- 
-  #case 3
-  "keerthi")
-     echo "BE : MECh" 
-     echo "9.11 CGPA" ;;
+directory="$1"
 
-   #case 4
-   "Kalim")
-    echo " B-Tech (CSBS)"
-    echo "6.76 CGPA" 
-    echo " Poor Student" ;;
-   
-  *)
-    echo "Name Not Found"
-    ;;
+if [ -z "$directory" ]; then
+  echo "Usage: $0 <directory>"
+  exit 1
+fi
 
-esac
+if [ ! -d "$directory" ]; then
+  echo "Error: '$directory' is not a valid directory."
+  exit 1
+fi
 
-
+echo "Empty files in $directory:"
+find "$directory" -type f -empty
